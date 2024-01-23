@@ -1,59 +1,55 @@
-<script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts">
+    import Task from "$lib/components/Task.svelte";
+
+    export let data;
+    $: tasks = data.tasks
+
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
+<div>
+    Add Filter Functionality
+</div>
+<div class="container">
+    <div class="list">
+        <h1>Tasks</h1>
+        {#each tasks as task}
+            <Task {task}/>
+        {/each}
+    </div>
+    <div class="add-task-container">
+        <h1>Add a new Task</h1>
+        TODO: Neue Aufgabe erstellen (Title, Description, DueDate, Prio, Category)
+    </div>
+</div>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
+    .container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+    }
 
-	h1 {
-		width: 100%;
-	}
+    .list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-radius: 8px;
+        min-height: 540px;
+        background-color: #3A4D39;
+    }
 
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
+    .add-task-container {
+        background-color: #739072;
+        padding: 24px;
+        margin: 24px 0;
+        border-radius: 8px;
+        min-height: 540px;
+    }
 
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
+    h1 {
+        width: 100%;
+        color: whitesmoke;
+    }
 </style>
