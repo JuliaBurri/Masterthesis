@@ -1,5 +1,7 @@
 package com.masterthesis.backend.controller;
 
+import com.masterthesis.backend.model.Category;
+import com.masterthesis.backend.model.Priority;
 import com.masterthesis.backend.repository.TaskRepository;
 import com.masterthesis.backend.model.Task;
 import org.springframework.web.bind.annotation.*;
@@ -16,38 +18,33 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    List<Task> getAll() {
+    public List<Task> getAll() {
         return repository.findAll();
     }
 
     @GetMapping("/tasks/{id}")
-    Task getTaskById(@PathVariable Long id) {
+    public Task getTaskById(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException(id));
     }
 
-    @PostMapping("/tasks")
-    Task newTask(@RequestBody Task newTask) {
-        return repository.save(newTask);
-    }
+    //TODO: Add request method to create new task
 
-    @PutMapping("/task/{id}")
-    Task replaceTask(@RequestBody Task newTask, @PathVariable Long id) {
-
-        return repository.findById(id)
-                .map(task -> {
-                    task.setTitle(newTask.getTitle());
-                    task.setDescription(newTask.getDescription());
-                    task.setDueDate(newTask.getDueDate());
-                    task.setPrio(newTask.getPrio());
-                    return repository.save(task);
-                })
-                .orElseGet(() -> repository.save(newTask));
-    }
+    //TODO: Add request method to update existing task / set Task to done
 
     @DeleteMapping("/tasks/{id}")
     void deleteTask(@PathVariable Long id) {
         repository.deleteById(id);
+    }
+
+    @GetMapping("/tasks/categories")
+    public Category[] getCategories() {
+        return Category.values();
+    }
+
+    @GetMapping("/tasks/priorities")
+    public Priority[] getPriorities() {
+        return Priority.values();
     }
 
 }
