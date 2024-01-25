@@ -32,6 +32,15 @@ public class TaskController {
 
     //TODO: Add request method to update existing task / set Task to done
 
+    @GetMapping("/tasks/schedule")
+    public List<Task> getWorkDaySchedule(@PathVariable Long id) {
+        // TODO: Schedule work day with Knappsack algorithm
+        // A Work day is 8 hours long, the tasks should fit into this time limit
+        // The tasks should be sorted by priority
+        // The tasks that not fit into the time limit should not be sent
+        return repository.findAll();
+    }
+
     @DeleteMapping("/tasks/{id}")
     void deleteTask(@PathVariable Long id) {
         repository.deleteById(id);

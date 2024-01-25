@@ -29,8 +29,8 @@ public class TaskControllerTest {
 
     @Test
     public void getTaskByIdTest() {
-        assert (this.taskController.getTaskById(1L).getTitle().equals("Make coffee"));
-        assert (this.taskController.getTaskById(1L).getDescription().equals("Black no milk"));
+        assert (this.taskController.getTaskById(2L).getTitle().equals("Have lunch"));
+        assert (this.taskController.getTaskById(2L).getDescription().equals("cook noodles"));
     }
 
     //TODO: Add test for add new Task

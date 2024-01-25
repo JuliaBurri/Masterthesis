@@ -1,18 +1,17 @@
 <script lang="ts">
-    import {getDateTime} from "$lib/helper/date-format-helper";
 
-    export let task: { title: string, prio: String, category: string, dueDate: String }
+    export let task: { title: string, prio: String, category: string, duration: number, done: boolean }
 </script>
 
 <div class="task-wrapper">
     <div class="row">
-        <input type="checkbox"/>
+        <input type="checkbox" checked={task.done}/>
         <h3>{task.title}</h3>
     </div>
 
     <div>
         <p>{"Priority " + task.prio}</p>
-        <p>{getDateTime(task.dueDate)}</p>
+        <p>{task.duration+ " min"}</p>
     </div>
 </div>
 

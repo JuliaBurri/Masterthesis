@@ -1,13 +1,20 @@
 <script lang="ts">
     import Task from "$lib/components/Task.svelte";
+    import {json} from "@sveltejs/kit";
 
     export let data;
     $: tasks = data.tasks
 
+    async function schedule() {
+        console.log("Schedule Work Day")
+        // TODO: Get task schedule from backend http://localhost:8080/tasks/schedule
+    }
+
 </script>
 
-<div>
-    Add Filter Functionality
+<div class="filter">
+    <button on:click={schedule}>Schedule Work Day</button>
+    <button>Filter by Priority</button> <!-- TODO -->
 </div>
 <div class="container">
     <div class="list">
@@ -18,11 +25,16 @@
     </div>
     <div class="add-task-container">
         <h1>Add a new Task</h1>
-        TODO: Neue Aufgabe erstellen (Title, Description, DueDate, Prio, Category)
+        TODO: Neue Aufgabe erstellen (Title, Description, Duration, Prio, Category)
     </div>
 </div>
 
 <style>
+    .filter {
+        display: flex;
+        gap: 24px;
+    }
+
     .container {
         display: grid;
         grid-template-columns: 2fr 1fr;

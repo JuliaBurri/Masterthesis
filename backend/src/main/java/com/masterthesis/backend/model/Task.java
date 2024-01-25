@@ -6,9 +6,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 @Entity
 @Table(name = "task")
 @Getter
@@ -23,7 +20,8 @@ public class Task {
     @NonNull
     private String title;
     private String description;
-    private LocalDate dueDate;
+    private Integer duration;
     private Priority prio;
     private Category category;
+    private boolean done;
 }
