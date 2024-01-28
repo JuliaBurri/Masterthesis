@@ -5,6 +5,7 @@
     $: tasks = data.tasks
 
     async function schedule() {
+        // TODO: Call api to get schedule
         console.log("Schedule Work Day")
     }
 </script>
@@ -23,12 +24,16 @@
     </div>
     <div class="add-task-container">
         <h1>Add a new Task</h1>
-        tba
+        <!-- TODO: add input fields -->
+        <p>tba</p>
+
+        <button style="margin: 12px 0">{"Add task"}</button>
     </div>
 </div>
 
 <style>
     .container {
+        /* TODO: This should be respsonsive */
         display: grid;
         grid-template-columns: 2fr 1fr;
         gap: 24px;
