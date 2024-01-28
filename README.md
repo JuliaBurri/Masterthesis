@@ -54,5 +54,6 @@ These are your tasks that should be completed without using Copilot. The tasks c
 # Thank you for your time!
 
 ### Run instructions
-Run backend: `./gradlew bootRun`
+Run backend: Firstly, make sure you are in the backend folder, then `./gradlew bootRun`
+
 Run frontend: Firstly, make sure you are in the frontend folder, then `npm run dev`
