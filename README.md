@@ -12,7 +12,7 @@ Before you start with the tasks
 - Install dependencies `npm install`
 
 ## Tasks / User Stories
-These are your tasks that should be completed without using Copilot. The tasks can include frontend and/or backend code and are separated by that in the user story description. There are also comments inside the code that describe what needs to be done.
+These are your tasks that should be completed without using Copilot. The tasks can include frontend and/or backend code and are separated by that in the user story description. There are also TODO-comments inside the code that describe shortly what needs to be done.
 **For each task, please set a timer to measure how long it took you to complete the task. Note that time down.**
 ### 1. User Story: As a user, I want to add a new task to my to-do list.
 #### Backend
