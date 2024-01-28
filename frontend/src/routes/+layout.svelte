@@ -23,4 +23,17 @@
         padding: 0 48px;
     }
 
+    :global(::-webkit-scrollbar) {
+        width: 8px;
+    }
+
+    :global(::-webkit-scrollbar-track) {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+    }
+
+    :global(::-webkit-scrollbar-thumb) {
+        background-color: lightgrey;
+        outline: none;
+        border-radius: 10px;
+    }
 </style>

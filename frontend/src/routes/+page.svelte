@@ -1,40 +1,33 @@
 <script lang="ts">
     import Task from "$lib/components/Task.svelte";
-    import {json} from "@sveltejs/kit";
 
     export let data;
     $: tasks = data.tasks
 
     async function schedule() {
         console.log("Schedule Work Day")
-        // TODO: Get task schedule from backend http://localhost:8080/tasks/schedule
     }
-
 </script>
 
-<div class="filter">
-    <button on:click={schedule}>Schedule Work Day</button>
-    <button>Filter by Priority</button> <!-- TODO -->
-</div>
+<button on:click={schedule}>Schedule Work Day</button>
 <div class="container">
     <div class="list">
-        <h1>Tasks</h1>
+        <h1>Todays Tasks</h1>
         {#each tasks as task}
             <Task {task}/>
         {/each}
+
+        <h1>Tomorrows Tasks</h1>
+        <p>Hint: Tasks that don't fit inside todays schedule should be displayed here.</p>
+
     </div>
     <div class="add-task-container">
         <h1>Add a new Task</h1>
-        TODO: Neue Aufgabe erstellen (Title, Description, Duration, Prio, Category)
+        tba
     </div>
 </div>
 
 <style>
-    .filter {
-        display: flex;
-        gap: 24px;
-    }
-
     .container {
         display: grid;
         grid-template-columns: 2fr 1fr;
@@ -48,7 +41,7 @@
         padding: 24px;
         margin: 24px 0;
         border-radius: 8px;
-        min-height: 540px;
+        overflow-y: scroll;
         background-color: #3A4D39;
     }
 
@@ -57,11 +50,26 @@
         padding: 24px;
         margin: 24px 0;
         border-radius: 8px;
-        min-height: 540px;
+    }
+
+    button {
+        background-color: whitesmoke;
+        border: solid 1px #3A4D39;
+        border-radius: 4px;
+        padding: 8px;
+        color: #739072;
+        font-size: 14px;
+        cursor: pointer;
     }
 
     h1 {
         width: 100%;
         color: whitesmoke;
+    }
+
+    p {
+        color: whitesmoke;
+        margin: 0;
+        font-size: 12px;
     }
 </style>
