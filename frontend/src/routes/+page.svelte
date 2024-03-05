@@ -6,11 +6,29 @@
     $: priorities = data.priorities;
 
     $: priority = undefined;
+    $: taskTitle = "";
+    $: taskDescription = "";
+    $: taskDuration = 0;
+
+    let result = null;
 
     async function addTask() {
-        // TODO: User Story 1 - Call api to add task
-        console.log("Add Task")
-    }
+        let task = { 
+                    title: taskTitle,
+                    description: taskDescription,
+                    duration: taskDuration,
+                    prio: priority}
+
+		const res = await fetch('http://localhost:8080/api/tasks', {
+			method: 'POST',
+			body: JSON.stringify({
+                task
+			})
+		})
+		
+		const json = await res.json()
+		result = JSON.stringify(json)
+	}
 
     async function schedule() {
         // TODO: User Story 3 - Call api to get schedule
@@ -33,6 +51,9 @@
     <div class="add-task-container">
         <h1>Add a new Task</h1>
         <!-- TODO: User Story 1 - Add input fields for title, description, duration -->
+        <input bind:value={taskTitle} placeholder="enter your task title" />
+        <input bind:value={taskDescription} placeholder="enter your task description" />
+        <input bind:value={taskDuration} placeholder="enter your task duration" />
         <select bind:value={priority}>
             <option value="" disabled selected>Select task priority</option>
             {#each priorities as p}
