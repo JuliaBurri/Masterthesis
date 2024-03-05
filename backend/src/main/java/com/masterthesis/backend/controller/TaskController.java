@@ -5,6 +5,7 @@ import com.masterthesis.backend.repository.TaskRepository;
 import com.masterthesis.backend.model.Task;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -47,6 +48,27 @@ public class TaskController {
      *                      The function is documented as a Javadoc comment
      *                      The function is tested
      */
+
+
+    /* Step 1: Create a new Task instance and initialise it with the provided parameters:
+     * - title
+     * - description
+     * - duration
+     * - priority
+     * Step 2: Set the DueDate of the created task instance to the current LocalDate
+     * Step 3: Set the status of the task instance to false
+     * Step 4: Save the task instance to the repository
+    */
+    @PostMapping()
+    public Task addTask(@RequestBody Task payload){
+        Task task = new Task(payload.getTitle(), payload.getDescription(), payload.getDuration(), payload.getPrio());
+        
+        task.setDueDate(LocalDate.now());
+        task.setDone(false);
+
+        repository.save(task);
+        return task;
+    }
 
     /* User story 2: As a user I want to set a task to done
      * TODO: Add request method to update existing task / set Task to done
