@@ -25,7 +25,9 @@
                 task
 			})
 		})
-		
+
+		tasks = Array.from(tasks).add(res);
+
 		const json = await res.json()
 		result = JSON.stringify(json)
 	}
