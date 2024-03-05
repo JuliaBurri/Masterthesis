@@ -48,6 +48,21 @@ public class TaskController {
      *                      The function is tested
      */
 
+    /**
+     * add a new task
+     *
+     * @param newTasks a new task to be added
+     * @return Task
+     */
+    @PostMapping("")
+    public Task addNewTask(Task newTasks) {
+        // time: 20 mins
+        newTasks.setDone(false);
+        newTasks.setDueDate(LocalDate.now());
+
+        return repository.save(newTasks);
+    } 
+
     /* User story 2: As a user I want to set a task to done
      * TODO: Add request method to update existing task / set Task to done
      *  ACCEPTANCE CRITERIA: The task is set to done

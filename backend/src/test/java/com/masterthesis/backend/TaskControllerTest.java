@@ -33,4 +33,13 @@ public class TaskControllerTest {
     public void getPrioritiesTest() {
         assert (Arrays.equals(this.taskController.getPriorities(), Priority.values()));
     }
+
+    @Test
+    public void addNewTaskTest() {
+        Task taskTest = new Task("taskTitle", "this is a test description", 30, Priority.LOW);
+        Task saveTask = this.taskController.addNewTask(taskTest);
+
+        assert (saveTask.getDueDate().equals(LocalDate.now()));
+        assert (saveTask.getTitle().equals(taskTest.getTitle()));
+    }
 }
