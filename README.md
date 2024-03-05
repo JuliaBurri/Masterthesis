@@ -1,4 +1,4 @@
-# Masterthesis_Copilot
+# Masterthesis
 The tasks of this project should be completed **without** using GitHub Copilot.
 The project is about a TODO Application for work tasks.
 
