@@ -2,14 +2,28 @@
     import Task from "$lib/components/Task.svelte";
 
     export let data;
-    $: tasks = data.tasks;
+    $: tasks = data.tasks
     $: priorities = data.priorities;
 
-    $: priority = undefined;
+    $: title = "";
+    $: description = "";
+    $: duration = 30;
+    $: priority = "LOW";
 
     async function addTask() {
-        // TODO: User Story 1 - Call api to add task
-        console.log("Add Task")
+        let task = {title: title, description: description, duration: duration, prio: priority}
+        const res = (await fetch('http://localhost:8080/api/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(task)
+        }));
+        const newTask = await res.json();
+        if (Array.isArray(tasks)) {
+            tasks.push(newTask)
+        }
+        tasks = tasks;
     }
 
     async function schedule() {
@@ -33,6 +47,9 @@
     <div class="add-task-container">
         <h1>Add a new Task</h1>
         <!-- TODO: User Story 1 - Add input fields for title, description, duration -->
+        <input bind:value={title} placeholder="Enter a task title"/>
+        <input bind:value={description} placeholder="Enter a description"/>
+        <input type="number" bind:value={duration} placeholder="Enter duration in minutes"/>
         <select bind:value={priority}>
             <option value="" disabled selected>Select task priority</option>
             {#each priorities as p}
@@ -48,8 +65,7 @@
 <style>
     .container {
         display: grid;
-        /* TODO: User Story 1 - this grid should be responsive */
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr) );
         gap: 24px;
     }
 
@@ -83,6 +99,12 @@
         font-size: 14px;
         cursor: pointer;
         text-transform: uppercase;
+    }
+
+    input {
+        padding: 8px;
+        border-radius: 4px;
+        border: none;
     }
 
     select {

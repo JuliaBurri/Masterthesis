@@ -1,9 +1,10 @@
 import type {PageLoad} from './$types';
+import type {Task} from "$lib/types/Task";
 
 export const load = (async ({fetch}) => {
-    const fetchTasks = async () => {
+    const fetchTasks = async (): Promise<Task[]> => {
         const taskResponse = await fetch('http://localhost:8080/api/tasks');
-        return await taskResponse.json();
+        return await taskResponse.json()
     };
 
     const fetchPrios = async () => {

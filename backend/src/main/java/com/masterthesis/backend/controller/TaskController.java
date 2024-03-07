@@ -5,6 +5,7 @@ import com.masterthesis.backend.repository.TaskRepository;
 import com.masterthesis.backend.model.Task;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -19,6 +20,7 @@ public class TaskController {
 
     /**
      * Get all tasks
+     *
      * @return List of all tasks
      */
     @GetMapping()
@@ -47,6 +49,18 @@ public class TaskController {
      *                      The function is documented as a Javadoc comment
      *                      The function is tested
      */
+
+    /**
+     * Creates a new task
+     * @param newTask the task to create
+     * @return the created task
+     */
+    @PostMapping()
+    public Task createTask(@RequestBody Task newTask) {
+        newTask.setDone(false);
+        newTask.setDueDate(LocalDate.now());
+        return repository.save(newTask);
+    }
 
     /* User story 2: As a user I want to set a task to done
      * TODO: Add request method to update existing task / set Task to done
