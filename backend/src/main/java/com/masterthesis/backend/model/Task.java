@@ -33,4 +33,12 @@ public class Task {
         this.duration = duration;
         this.prio = prio;
     }
+
+    public boolean isTaskVerified(){
+
+        if(!this.isDone() && this.getTitle() != null && this.getDescription() != null && this.getDuration() != null && this.getPrio() != null){
+            return true;
+        }
+        return false;
+    }
 }

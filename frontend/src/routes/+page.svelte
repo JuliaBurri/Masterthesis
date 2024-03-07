@@ -9,7 +9,33 @@
 
     async function addTask() {
         // TODO: User Story 1 - Call api to add task
-        console.log("Add Task")
+
+        let title = document.getElementById('title_input').value;
+        let description = document.getElementById('description_input').value;
+        let duration = document.getElementById('duration_input').value;
+
+        if (title === '' || description === '' || duration === '' || priority === undefined) {
+            alert('Please fill all fields');
+            return;
+        }
+
+        let newTask = {
+            title: title,
+            description: description,
+            duration: duration,
+            priority: priority,
+            done : false
+        }
+
+        const res = await fetch('http://localhost:8080/api/tasks/addNewTask', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newTask)
+        });
+
+        console.log(res)
     }
 
     async function schedule() {
@@ -33,6 +59,9 @@
     <div class="add-task-container">
         <h1>Add a new Task</h1>
         <!-- TODO: User Story 1 - Add input fields for title, description, duration -->
+        <input id='title_input' class="formItem" type="text" placeholder="title" />
+        <input id='description_input' class="formItem" type="text" placeholder="description" />
+        <input id='duration_input' class="formItem" type="number" placeholder="duration" />
         <select bind:value={priority}>
             <option value="" disabled selected>Select task priority</option>
             {#each priorities as p}
@@ -52,7 +81,16 @@
         grid-template-columns: 2fr 1fr;
         gap: 24px;
     }
-
+    .formItem{
+        display: flex;
+        flex-direction: column;
+        background-color: whitesmoke;
+        border: solid 1px #3A4D39;
+        border-radius: 4px;
+        padding: 8px;
+        color: #739072;
+        font-size: 14px;
+    }
     .list {
         display: flex;
         flex-direction: column;
