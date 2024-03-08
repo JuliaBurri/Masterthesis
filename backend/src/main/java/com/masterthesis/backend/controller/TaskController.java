@@ -47,7 +47,10 @@ public class TaskController {
      *                      The function is documented as a Javadoc comment
      *                      The function is tested
      */
-
+    @PostMapping("/addTask")
+    public Task newTask(@RequestBody Task newTask) {
+        return repository.save(newTask);
+    }
     /* User story 2: As a user I want to set a task to done
      * TODO: Add request method to update existing task / set Task to done
      *  ACCEPTANCE CRITERIA: The task is set to done

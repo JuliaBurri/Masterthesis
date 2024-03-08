@@ -9,6 +9,27 @@
 
     async function addTask() {
         // TODO: User Story 1 - Call api to add task
+
+        fetch('http://localhost:8080/api/tasks/addTask', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                duration: document.getElementById('duration').value,
+                priority: priority
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
         console.log("Add Task")
     }
 
@@ -33,6 +54,9 @@
     <div class="add-task-container">
         <h1>Add a new Task</h1>
         <!-- TODO: User Story 1 - Add input fields for title, description, duration -->
+        <input type="text" placeholder="Task title" class="form" id="title">
+        <input type="text" placeholder="Task description" class="form" id="description">
+        <input type="number" placeholder="Task duration" class="form" id="duration">
         <select bind:value={priority}>
             <option value="" disabled selected>Select task priority</option>
             {#each priorities as p}
@@ -52,7 +76,11 @@
         grid-template-columns: 2fr 1fr;
         gap: 24px;
     }
-
+    .form {
+        padding: 8px;
+        border-radius: 4px;
+        border: none;
+    }
     .list {
         display: flex;
         flex-direction: column;
