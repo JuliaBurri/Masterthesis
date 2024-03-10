@@ -31,7 +31,7 @@
 		const taskResponse = await fetch('http://localhost:8080/api/tasks');
 		tasks = await taskResponse.json();
 	}
-	
+
 	async function schedule() {
 		// TODO: User Story 3 - Call api to get schedule
 		console.log('Schedule Work Day');
@@ -75,6 +75,7 @@
 		gap: 24px;
 		
 	}
+
 	.list {
 		display: flex;
 		flex-direction: column;
@@ -106,7 +107,6 @@
 		cursor: pointer;
 		text-transform: uppercase;
 	}
-
 
 	select {
 		padding: 8px;
